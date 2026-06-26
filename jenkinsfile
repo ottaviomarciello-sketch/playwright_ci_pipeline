@@ -11,7 +11,7 @@ pipeline {
         stage('Create virtual environment') {
             steps {
                 bat '''
-                py -3.13 -m venv "%VENV_DIR%"
+                "%PYTHON%" -m venv "%VENV_DIR%"
                 '''
             }
         }
