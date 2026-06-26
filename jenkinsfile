@@ -1,0 +1,65 @@
+pipeline {
+    agent any
+
+    environment {
+        VENV_DIR = "${WORKSPACE}\\venv"
+    }
+
+    stages {
+
+        stage('Create virtual environment') {
+            steps {
+                bat '''
+                py -3.13 -m venv "%VENV_DIR%"
+                '''
+            }
+        }
+
+        stage('Install dependencies') {
+            steps {
+                bat '''
+                "%VENV_DIR%\\Scripts\\python.exe" -m pip install --upgrade pip
+                "%VENV_DIR%\\Scripts\\pip.exe" install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Install Playwright browsers') {
+            steps {
+                bat '''
+                "%VENV_DIR%\\Scripts\\python.exe" -m playwright install
+                '''
+            }
+        }
+
+        stage('Run Playwright tests') {
+            steps {
+                bat '''
+                if not exist reports mkdir reports
+
+                "%VENV_DIR%\\Scripts\\python.exe" -m pytest tests ^
+                  --junitxml=reports/results.xml ^
+                  --html=reports/report.html ^
+                  --self-contained-html
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            junit 'reports/results.xml'
+
+            publishHTML(target: [
+                reportDir: 'reports',
+                reportFiles: 'report.html',
+                reportName: 'Playwright Report',
+                keepAll: true,
+                alwaysLinkToLastBuild: true
+            ])
+
+            archiveArtifacts artifacts: 'screenshots/*.png',
+                             allowEmptyArchive: true
+        }
+    }
+}
