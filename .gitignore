@@ -1,23 +1,93 @@
-# Virtual environment
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# ==========================
+# Virtual Environments
+# ==========================
 .venv/
 venv/
+env/
+ENV/
+env.bak/
+venv.bak/
 
-# Screenshots
-screenshots/
-
-# PyCharm
+# ==========================
+# PyCharm / IntelliJ
+# ==========================
 .idea/
 *.iml
 
-# Python
-__pycache__/
-*.pyc
+# ==========================
+# Pytest
+# ==========================
 .pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
 
-# Test output
+# ==========================
+# MyPy / Ruff
+# ==========================
+.mypy_cache/
+.ruff_cache/
+
+# ==========================
+# Build / Distribution
+# ==========================
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# ==========================
+# Jupyter
+# ==========================
+.ipynb_checkpoints/
+
+# ==========================
+# Logs
+# ==========================
+*.log
+
+# ==========================
+# Test Artifacts
+# ==========================
 output/
 outputs/
 reports/
+screenshots/
 
-# Screenshots (opzionale)
-# screenshots/*.png
+# ==========================
+# Playwright
+# ==========================
+playwright-report/
+test-results/
+
+# Traces e video Playwright
+*.zip
+*.webm
+
+# ==========================
+# OS files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Environment variables
+# ==========================
+.env
+.env.*
+
+# ==========================
+# VS Code (se lo userai)
+# ==========================
+.vscode/
