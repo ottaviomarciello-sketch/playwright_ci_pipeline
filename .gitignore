@@ -1,0 +1,23 @@
+# Virtual environment
+.venv/
+venv/
+
+# Screenshots
+screenshots/
+
+# PyCharm
+.idea/
+*.iml
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Test output
+output/
+outputs/
+reports/
+
+# Screenshots (opzionale)
+# screenshots/*.png
