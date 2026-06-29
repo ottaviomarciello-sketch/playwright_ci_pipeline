@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         VENV_DIR = "${WORKSPACE}\\venv"
-		PYTHON = "C:\\Users\\ottav\\AppData\\Local\\Programs\\Python\\Python313-arm64\\python.exe"
+        PYTHON = "C:\\Users\\ottav\\AppData\\Local\\Programs\\Python\\Python313-arm64\\python.exe"
     }
 
     stages {
@@ -49,7 +49,8 @@ pipeline {
 
     post {
         always {
-            junit 'reports/results.xml'
+            junit allowEmptyResults: true,
+                  testResults: 'reports/results.xml'
 
             publishHTML(target: [
                 reportDir: 'reports',

@@ -46,6 +46,7 @@ dist/
 *.egg-info/
 .eggs/
 *.egg
+pip-wheel-metadata/
 
 # ==========================
 # Jupyter
@@ -70,16 +71,20 @@ screenshots/
 # ==========================
 playwright-report/
 test-results/
+browser-data/
 
-# Traces e video Playwright
+# Traces, video e download
 *.zip
 *.webm
+*.trace
+downloads/
 
 # ==========================
 # OS files
 # ==========================
 .DS_Store
 Thumbs.db
+Desktop.ini
 
 # ==========================
 # Environment variables
@@ -88,6 +93,6 @@ Thumbs.db
 .env.*
 
 # ==========================
-# VS Code (se lo userai)
+# VS Code
 # ==========================
 .vscode/

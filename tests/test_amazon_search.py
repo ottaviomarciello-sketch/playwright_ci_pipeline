@@ -1,5 +1,4 @@
 from playwright.sync_api import sync_playwright
-
 from pages.home_page import HomePage
 from pages.search_results_page import SearchResultsPage
 from pages.product_page import ProductPage
@@ -74,5 +73,3 @@ def test_amazon_search():
 
 
 
-if __name__ == "__main__":
-    test_amazon_search()
