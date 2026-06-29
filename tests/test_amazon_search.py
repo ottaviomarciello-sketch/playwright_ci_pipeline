@@ -66,7 +66,7 @@ def test_amazon_search():
         save_product(title, price)
 
         # Pausa per debug (rimuovere nei test automatici)
-        page.pause()
+        #page.pause()
 
         browser.close()
 
