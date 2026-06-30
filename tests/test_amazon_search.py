@@ -84,7 +84,7 @@ def test_amazon_search():
 
         # Pausa per debug (rimuovere nei test automatici)
 
-        page.pause()
+        #page.pause()
 
         browser.close()
 
