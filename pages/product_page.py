@@ -7,6 +7,11 @@ class ProductPage:
     def __init__(self, page: Page):
         self.page = page
 
+        self.password_textbox = page.get_by_role(
+            "textbox",
+            name="Password"
+        )
+
         # Locators
         self.title = page.locator("#productTitle")
         self.cart = page.locator("#nav-cart-count")
@@ -14,6 +19,11 @@ class ProductPage:
         self.email_textbox = page.get_by_role(
             "textbox",
             name="Inserisci il numero di"
+        )
+
+        self.password_textbox = page.get_by_role(
+            "textbox",
+            name="Password"
         )
 
         self.add_to_cart_button = page.locator(
@@ -29,6 +39,11 @@ class ProductPage:
         self.continue_button = page.get_by_role(
             "button",
             name="Continua"
+        )
+
+        self.accept_button = page.get_by_role(
+            "button",
+            name="Accedi"
         )
 
         self.proceed_to_order_button = page.get_by_role(
@@ -86,12 +101,19 @@ class ProductPage:
         else:
             print("protezione acquisti non trovata")
 
+    def enter_password(self, password: str):
+        expect(self.password_textbox).to_be_visible(timeout=10000)
+        self.password_textbox.fill(password)
+
     def get_cart_count(self) -> int:
         expect(self.cart).to_be_visible(timeout=10000)
         return int(self.cart.inner_text())
 
     def click_continue(self):
         self.continue_button.click()
+
+    def click_accept(self):
+        self.accept_button.click()
 
     def take_screenshot(self):
         self.page.screenshot(

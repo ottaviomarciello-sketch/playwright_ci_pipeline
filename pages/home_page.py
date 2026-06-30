@@ -8,6 +8,7 @@ class HomePage:
         # Costruttore: viene chiamato quando crei HomePage(page)
         self.page = page  # pagina Playwright (tab del browser)
 
+
         self.url = "https://www.amazon.it"  # URL della home page Amazon
 
         # Selettore CSS del bottone cookie "Accetta"
@@ -18,6 +19,8 @@ class HomePage:
 
         # Selettore del bottone di ricerca (lente)
         self.search_button = "#nav-search-submit-button"
+
+
 
     def open(self):
         # Metodo per aprire la home page di Amazon

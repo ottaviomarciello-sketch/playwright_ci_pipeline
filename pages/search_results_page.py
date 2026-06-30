@@ -71,7 +71,7 @@ class SearchResultsPage:
                 link.click(timeout=5000)
 
                 expect(
-                    self.page.locator("#productTitle")
+                    self.page.locator("span#productTitle")
                 ).to_be_visible(timeout=10000)
 
                 return ProductPage(self.page)

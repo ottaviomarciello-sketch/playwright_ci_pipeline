@@ -65,17 +65,26 @@ def test_amazon_search():
         page.wait_for_timeout(5000)
 
         product.enter_email("ottaviomarciello@gmail.com")
+        product.click_continue()
+
+        #page.pause()
 
         page.wait_for_timeout(5000)
+        page.wait_for_timeout(5000)
+        product.enter_password("Samsung.69315!")
 
-        product.click_continue()
+        product.click_accept()
+
+        #page.pause()
+
+
 
         # Salva i dati del prodotto
         save_product(title, price)
 
         # Pausa per debug (rimuovere nei test automatici)
-        #page.pause()
-        #page.pause()
+
+        page.pause()
 
         browser.close()
 
