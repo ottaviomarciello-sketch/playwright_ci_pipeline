@@ -26,6 +26,11 @@ class ProductPage:
             exact=True
         )
 
+        self.continue_button = page.get_by_role(
+            "button",
+            name="Continua"
+        )
+
         self.proceed_to_order_button = page.get_by_role(
             "button",
             name=re.compile(r"^Procedi all'ordine.*")
@@ -84,6 +89,9 @@ class ProductPage:
     def get_cart_count(self) -> int:
         expect(self.cart).to_be_visible(timeout=10000)
         return int(self.cart.inner_text())
+
+    def click_continue(self):
+        self.continue_button.click()
 
     def take_screenshot(self):
         self.page.screenshot(

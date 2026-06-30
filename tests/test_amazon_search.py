@@ -53,6 +53,7 @@ def test_amazon_search():
         product.click_checkbox()
         product.add_protection()
 
+
         page.wait_for_timeout(5000)
 
         # Verifica il numero di articoli nel carrello
@@ -63,10 +64,13 @@ def test_amazon_search():
 
         product.enter_email("ottaviomarciello@gmail.com")
 
+        product.click_continue()
+
         # Salva i dati del prodotto
         save_product(title, price)
 
         # Pausa per debug (rimuovere nei test automatici)
+        #page.pause()
         #page.pause()
 
         browser.close()
