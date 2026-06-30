@@ -78,7 +78,7 @@ class ProductPage:
     def add_protection(self):
         if self.add_protection_button.count() > 0:
             self.add_protection_button.click()
-        else
+        else:
             print("protezione acquisti non trovata")
 
     def get_cart_count(self) -> int:
