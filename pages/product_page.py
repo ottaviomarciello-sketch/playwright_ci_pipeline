@@ -69,7 +69,9 @@ class ProductPage:
         expect(self.email_textbox).to_be_visible(timeout=10000)
         self.email_textbox.fill(email)
 
+
     def click_checkbox(self):
+        print(f"Locator: {self.checkbox}")
         expect(self.checkbox).to_be_visible(timeout=10000)
         self.checkbox.click()
 
