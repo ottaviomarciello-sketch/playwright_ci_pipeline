@@ -16,10 +16,8 @@ class ProductPage:
             name="Inserisci il numero di"
         )
 
-        self.add_to_cart_button = page.get_by_role(
-            "button",
-            name="Aggiungi al carrello",
-            exact=True
+        self.add_to_cart_button = page.locator(
+            "#buybox input#add-to-cart-button"
         )
 
         self.add_protection_button = page.get_by_role(

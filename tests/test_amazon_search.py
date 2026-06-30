@@ -44,7 +44,8 @@ def test_amazon_search():
         print(f"Prezzo: {price}")
 
         product.take_screenshot()
-
+        #print(page.locator("#add-to-cart-button").count())
+        #page.pause()
         # Aggiunge il prodotto al carrello
         product.add_to_cart()
 
@@ -66,7 +67,7 @@ def test_amazon_search():
         save_product(title, price)
 
         # Pausa per debug (rimuovere nei test automatici)
-        #page.pause()#
+        page.pause()
 
         browser.close()
 
