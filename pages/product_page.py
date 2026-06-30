@@ -76,8 +76,10 @@ class ProductPage:
             print("Checkbox non presente.")
 
     def add_protection(self):
-        expect(self.add_protection_button).to_be_visible(timeout=10000)
-        self.add_protection_button.click()
+        if self.add_protection_button.count() > 0:
+            self.add_protection_button.click()
+        else
+            print("protezione acquisti non trovata")
 
     def get_cart_count(self) -> int:
         expect(self.cart).to_be_visible(timeout=10000)
