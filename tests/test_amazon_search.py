@@ -64,7 +64,7 @@ def test_amazon_search():
 
         page.wait_for_timeout(5000)
 
-        product.enter_email("ottaviomarciello@gmail.com")
+        product.enter_email("ottavio.marciello@gmail.com")
 
         page.wait_for_timeout(5000)
 
