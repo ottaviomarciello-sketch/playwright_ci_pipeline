@@ -62,7 +62,11 @@ def test_amazon_search():
         # Procede all'ordine
         product.proceed_to_order()
 
+        page.wait_for_timeout(5000)
+
         product.enter_email("ottaviomarciello@gmail.com")
+
+        page.wait_for_timeout(5000)
 
         product.click_continue()
 
