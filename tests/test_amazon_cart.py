@@ -37,7 +37,7 @@ def test_cart_contains_first_search_result(page):
     except TimeoutError:
         pass
     else:
-        page.pause()
+        #page.pause()
         product.select_protection_plan()
         product.add_protection()
         expected_count = "2"
