@@ -1,58 +1,30 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, TimeoutError
 
 
 class HomePage:
-    # Classe che rappresenta la Home Page di Amazon (Page Object Model)
-
     def __init__(self, page: Page):
-        # Costruttore: viene chiamato quando crei HomePage(page)
-        self.page = page  # pagina Playwright (tab del browser)
-
-
-        self.url = "https://www.amazon.it"  # URL della home page Amazon
-
-        # Selettore CSS del bottone cookie "Accetta"
-        self.cookie_button = "#sp-cc-accept"
-
-        # Selettore della barra di ricerca
-        self.search_input = "#twotabsearchtextbox"
-
-        # Selettore del bottone di ricerca (lente)
-        self.search_button = "#nav-search-submit-button"
-
-
+        self.page = page
+        self.url = "https://www.amazon.it"
+        self.cookie_button = page.locator("#sp-cc-accept")
+        self.search_input = page.locator("#twotabsearchtextbox")
+        self.search_button = page.locator("#nav-search-submit-button")
 
     def open(self):
-        # Metodo per aprire la home page di Amazon
-
         self.page.goto(
-            self.url,  # apre l'URL definito sopra
-            wait_until="domcontentloaded",  # aspetta che il DOM (HTML) sia caricato
-            timeout=60000  # timeout massimo 60 secondi
+            self.url,
+            wait_until="domcontentloaded",
+            timeout=60000,
         )
-
-        # ulteriore attesa per sicurezza (pagina stabile)
-        self.page.wait_for_load_state("domcontentloaded")
-
-        # prova ad accettare i cookie (se popup presente)
         self.accept_cookies()
 
     def accept_cookies(self):
-        # Metodo per chiudere il popup cookie se appare
-
         try:
-            # cerca il bottone cookie e clicca
-            self.page.locator(self.cookie_button).click(timeout=3000)
-        except:
-            # se il bottone non esiste o non appare entro 3 secondi
-            # non bloccare il test
-            pass
+            self.cookie_button.wait_for(state="visible", timeout=3000)
+        except TimeoutError:
+            return
+
+        self.cookie_button.click(timeout=3000)
 
     def search_product(self, text: str):
-        # Metodo per cercare un prodotto su Amazon
-
-        # scrive il testo nella barra di ricerca
-        self.page.locator(self.search_input).fill(text)
-
-        # clicca il bottone di ricerca
-        self.page.locator(self.search_button).click()
+        self.search_input.fill(text)
+        self.search_button.click()

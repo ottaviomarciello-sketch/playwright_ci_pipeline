@@ -7,7 +7,6 @@ pipeline {
     }
 
     stages {
-
         stage('Create virtual environment') {
             steps {
                 bat '''
@@ -19,16 +18,15 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 bat '''
-                "%VENV_DIR%\\Scripts\\python.exe" -m pip install --upgrade pip
-                "%VENV_DIR%\\Scripts\\pip.exe" install -r requirements.txt
+                "%VENV_DIR%\\Scripts\\python.exe" -m pip install -r requirements.txt
                 '''
             }
         }
 
-        stage('Install Playwright browsers') {
+        stage('Install Chromium') {
             steps {
                 bat '''
-                "%VENV_DIR%\\Scripts\\python.exe" -m playwright install
+                "%VENV_DIR%\\Scripts\\python.exe" -m playwright install chromium
                 '''
             }
         }
@@ -41,7 +39,10 @@ pipeline {
                 "%VENV_DIR%\\Scripts\\python.exe" -m pytest tests ^
                   --junitxml=reports/results.xml ^
                   --html=reports/report.html ^
-                  --self-contained-html
+                  --self-contained-html ^
+                  --tracing=retain-on-failure ^
+                  --screenshot=only-on-failure ^
+                  --output=reports/playwright
                 '''
             }
         }
@@ -60,7 +61,7 @@ pipeline {
                 alwaysLinkToLastBuild: true
             ])
 
-            archiveArtifacts artifacts: 'screenshots/*.png',
+            archiveArtifacts artifacts: 'reports/playwright/**',
                              allowEmptyArchive: true
         }
     }

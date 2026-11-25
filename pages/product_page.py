@@ -89,11 +89,8 @@ class ProductPage:
         expect(self.email_textbox).to_be_visible(timeout=10000)
         self.email_textbox.fill(email)
 
-    def click_checkbox(self):
-        if self.checkbox.count() > 0:
-            self.checkbox.click()
-        else:
-            print("Checkbox non presente.")
+    def select_protection_plan(self):
+        self.checkbox.click(timeout=10000)
 
     def add_protection(self):
         if self.add_protection_button.count() > 0:
